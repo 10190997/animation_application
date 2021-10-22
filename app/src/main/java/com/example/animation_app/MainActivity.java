@@ -14,7 +14,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements Animation.AnimationListener {
+public class MainActivity extends AppCompatActivity implements Animation.AnimationListener, textEditable {
     private ImageView icon;
     private Animation iconAnim;
     private TextView textView;
@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
         ColorDrawable[] colorDrawables = {new ColorDrawable(Color.WHITE), new ColorDrawable(Color.BLUE)};
         transitionDrawable = new TransitionDrawable(colorDrawables);
         constraintLayout.setBackground(transitionDrawable);
+
+
     }
 
     public void btnClick(View view) {
@@ -47,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
         transitionDrawable.startTransition(2000);
         objectAnimator.start();
     }
-
 
     @Override
     public void onAnimationStart(Animation animation) {
@@ -60,7 +61,15 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
     }
 
     @Override
-    public void onAnimationRepeat(Animation animation) {
+    public void onAnimationRepeat(Animation animation) {}
 
+    public void showDialog(View view) {
+        dialogue dialogue = new dialogue();
+        dialogue.show(getSupportFragmentManager(), "alert");
+    }
+
+    @Override
+    public void editName(String name) {
+        textView.setText(name);
     }
 }
